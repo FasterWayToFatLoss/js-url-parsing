@@ -1,7 +1,6 @@
 function getReferralID() {
-
-	var extractedReferralID = "";
-  
+    var extractedReferralID = "";
+    
     // Get url param aid if exists
     var urlParams = new URLSearchParams(window.location.search);
     var aid = urlParams.get('aid');
@@ -15,9 +14,9 @@ function getReferralID() {
     }
 
     if(aid) {
-    extractedReferralID = aid;
+        extractedReferralID = aid;
     } else if(anchorValue) {
-    extractedReferralID = anchorValue;
+        extractedReferralID = anchorValue;
     }
 
     return extractedReferralID;
