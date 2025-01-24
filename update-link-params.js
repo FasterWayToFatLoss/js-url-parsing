@@ -21,6 +21,12 @@ function updateLinksWithQueryString() {
 
   // Iterate through each link
   links.forEach(function(link) {
+
+    // Skip links with href="#" or href="#somevalue"
+    if (link.getAttribute('href').startsWith('#')) {
+        return;
+      }
+      
     // Parse the link's URL
     var linkUrl = new URL(link.href);
 
