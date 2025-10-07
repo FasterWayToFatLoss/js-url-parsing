@@ -1,5 +1,12 @@
 // Function to update all links on the page
 function updateLinksWithQueryString() {
+
+  // --- Parameters to EXCLUDE from the merge process ---
+  // GA4/GA360 Linker: _gl (Global Linker)
+  // Google Click IDs: _gcl_au (AdWords), _gclid (Google Ads), _gcl_aw, etc.
+  // Legacy GA (just in case): _ga
+  const GA_EXCLUDE_PARAMS = ['_gl', '_ga', '_gclid', '_gcl_au', '_gcl_aw', 'gclid'];
+
   // Get the current page's URL
   var currentUrl = window.location.href;
 
@@ -33,9 +40,12 @@ function updateLinksWithQueryString() {
     // Get the query string parameters of the link as a URLSearchParams object
     var linkParams = new URLSearchParams(linkUrl.search);
 
-    // Merge or replace parameters from the current URL into the link's parameters
+    // Merge or replace parameters from the current URL into the link's parameters; skip GA params
     currentParams.forEach(function(value, key) {
-      linkParams.set(key, value); // Replace or add the parameter
+      // Skip the parameter if it is on the exclusion list
+      if (!GA_EXCLUDE_PARAMS.includes(key)) {
+        linkParams.set(key, value); // Merge/replace the parameter
+      }
     });
 
     // Update the link's search parameters
