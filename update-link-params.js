@@ -18,10 +18,12 @@ function updateLinksWithQueryString() {
   var currentParams = new URLSearchParams(queryString);
 
   // If a hash exists, convert it to a query string parameter 'aid'
+  /*
   if (hash) {
     currentParams.set('aid', hash.substring(1)); // Add or update the 'aid' parameter
     hash = ''; // Clear the hash since we've converted it to a query string parameter
   }
+  */
 
   // Get all links on the page
   var links = document.querySelectorAll('a[href]');
